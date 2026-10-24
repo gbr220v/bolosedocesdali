@@ -1,2 +1,0 @@
-URL https://busehqnclfxtlqblnhdd.supabase.co/rest/v1/
-anon eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1c2VocW5jbGZ4dGxxYmxuaGRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3OTg5NzQsImV4cCI6MjEwODM3NDk3NH0.OXiaSRJa9n8opi34SuJCwVm62A6xVK39l9n-7MRy6Y4
