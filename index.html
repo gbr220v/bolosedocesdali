@@ -70,15 +70,15 @@ h1,h2,h3{font-family:var(--display);font-variation-settings:"SOFT" 100;margin:0;
 .brand h1{font-size:clamp(26px,7.5vw,34px);font-weight:800;letter-spacing:-.01em}
 .brand .by{font-size:14px;opacity:.9;margin-top:2px}
 .lede{font-size:16px;line-height:1.45;margin:0;max-width:34em;opacity:.95}
-.steps{display:flex;gap:8px;flex-wrap:wrap;margin:0;padding:0;list-style:none;counter-reset:s}
-.steps li{counter-increment:s;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 11px 5px 6px}
-.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--hero-fg);color:var(--rose-ink);font-size:12px;font-weight:900}
+.steps{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--hero-fg);color:var(--rose-ink);font-size:13px;font-weight:900;flex:0 0 auto}
 .strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-block:2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .strip::-webkit-scrollbar{display:none}
 .shot{position:relative;flex:0 0 124px;aspect-ratio:4/5;max-width:100%;border-radius:18px;overflow:hidden;scroll-snap-align:start;background:var(--rose-soft);box-shadow:0 8px 20px -10px rgba(0,0,0,.45)}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
 .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(transparent,rgba(40,10,20,.75));letter-spacing:.02em}
-.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .pill{font-size:12.5px;font-weight:800;border-radius:999px;padding:5px 11px;background:var(--hero-fg);color:var(--rose-ink)}
 
 /* Tabs */
@@ -126,6 +126,12 @@ section{padding-block:26px 8px}
 .row:first-of-type{border-top:0}
 .row .name{font-weight:700;font-size:15.5px;min-width:0;flex:1 1 auto}
 .row .name small{display:block;font-weight:700;font-size:13px;color:var(--rose-ink)}
+.row .name .sub{display:block;font-weight:800;font-size:13px;color:var(--ok);font-variant-numeric:tabular-nums}
+.row .name .sub:empty{display:none}
+.total{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--rose-soft);border:1.5px solid var(--rose);border-radius:18px;padding:14px 16px}
+.total .lbl2{font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--rose-ink)}
+.total .lbl2 small{display:block;text-transform:none;letter-spacing:0;font-weight:700;color:var(--muted);font-size:12.5px}
+.total .price{font-size:28px}
 .row.on{background:color-mix(in srgb,var(--rose) 9%,var(--surface))}
 .step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);flex:0 0 auto}
 .step button{width:38px;height:38px;border:0;background:transparent;color:var(--rose-ink);font-size:22px;font-weight:900;border-radius:999px;line-height:1;display:grid;place-items:center;-webkit-tap-highlight-color:transparent}
@@ -305,7 +311,7 @@ footer{padding-block:28px 12px;text-align:center;color:var(--muted);font-size:13
       <p>Toque em + para montar o seu mix de sabores.</p>
     </div>
     <div class="stack">
-      <div class="note"><span class="ic">📦</span><div><strong>Mínimo de 50 unidades</strong>, depois qualquer quantidade exata (60, 70, 85…). <strong>De 50 a 79: até 2 sabores · a partir de 80: até 4 sabores.</strong> Toque no número para digitar a quantidade.</div></div>
+      <div class="note"><span class="ic">📦</span><div><strong>Mínimo de 50 unidades, de 5 em 5</strong> (55, 60, 65…). <strong>De 50 a 79: até 2 sabores · a partir de 80: até 4 sabores.</strong> Toque no número para digitar a quantidade.</div></div>
       <div class="status" id="salg-status" aria-live="polite"></div>
       <div id="salg-groups" class="stack"></div>
       <div class="note"><span class="ic">🍽️</span><div><strong>Bandeja com 50 un · R$45,00</strong></div></div>
@@ -352,8 +358,8 @@ footer{padding-block:28px 12px;text-align:center;color:var(--muted);font-size:13
           <input class="txt" id="tema" type="text" placeholder="Ex.: Batizado da Yasmin, 4 anos do Benjamin" maxlength="80">
         </div>
         <div class="estimate">
-          <div><small>Estimativa da massa</small><span class="price" id="est">R$74,00</span></div>
-          <div style="text-align:right"><small id="est-detail">Branca · 1,0 kg × R$74,00</small><small id="est-topper" hidden>+ topper a partir de R$25,00</small></div>
+          <div><small>Valor do bolo</small><span class="price" id="est">R$74,00</span></div>
+          <div style="text-align:right"><small id="est-detail">Branca · 1,0 kg × R$74,00</small><small id="est-topper" hidden>+ topper R$25,00 (a partir de)</small></div>
         </div>
         <button type="button" class="btn btn-rose btn-block" id="add-bolo">Incluir bolo no pedido</button>
       </div>
@@ -438,20 +444,26 @@ document.querySelectorAll('[data-img]').forEach(el => { if (IMG[el.dataset.img])
 
 const PHONE = '5516991621500';
 const DATA = {
+  // cento = preço de 100 unidades (tabela); unitário = cento / 100
   salgados: [
-    { grupo: 'Fritos', preco: 'R$85,00', itens: ['Bolinha de queijo','Pastel de pizza','Pastel de carne','Pastel de queijo','Risoli de carne','Risoli de milho','Risoli de ricota','Risoli de presunto e mussarela','Coxinha','Salsicha empanada','Croquete de carne'] },
-    { grupo: 'Assados', preco: 'R$85,00', itens: ['Pastel de ricota','Enroladinho de pernil','Enroladinho de frango','Enroladinho de presunto e mussarela','Enroladinho de salsicha','Enroladinho de calabresa','Mini pizza','Esfiha de carne','Mini hambúrguer'] },
-    { grupo: 'Outros', preco: 'R$88,00', itens: ['Coxinha cremosa','Coxinha com cheddar','Espetinho de frango','Empada de frango'] },
-    { grupo: 'Especiais', preco: 'R$95,00', itens: ['Pastel de palmito','Empada de palmito','Empada quatro queijos'] }
+    { grupo: 'Fritos', cento: 85, itens: ['Bolinha de queijo','Pastel de pizza','Pastel de carne','Pastel de queijo','Risoli de carne','Risoli de milho','Risoli de ricota','Risoli de presunto e mussarela','Coxinha','Salsicha empanada','Croquete de carne'] },
+    { grupo: 'Assados', cento: 85, itens: ['Pastel de ricota','Enroladinho de pernil','Enroladinho de frango','Enroladinho de presunto e mussarela','Enroladinho de salsicha','Enroladinho de calabresa','Mini pizza','Esfiha de carne','Mini hambúrguer'] },
+    { grupo: 'Outros', cento: 88, itens: ['Coxinha cremosa','Coxinha com cheddar','Espetinho de frango','Empada de frango'] },
+    { grupo: 'Especiais', cento: 95, itens: ['Pastel de palmito','Empada de palmito','Empada quatro queijos'] }
   ],
   massas: [ { n: 'Branca', p: 74 }, { n: 'Chocolate', p: 79 }, { n: 'Naked Cake', p: 82 } ],
+  topper: 25,
   recheios: ['Ninho','Ninho trufado','Ninho com Morango','Ninho com Abacaxi','Ninho com Avelã','Quatro Leites','Ferrero Rocher','Brigadeiro','Nozes','Charge','Ouro Branco','Floresta Negra','Mousse de Doce de Leite','Prestígio','Kinder Bueno','Sonho de Valsa','Mousse de Chocolate','Oreo','Ovomaltine'],
   doces: [
-    { n: 'Brigadeiro', p: 'R$134,00' }, { n: 'Ferrero com Avelã', p: 'R$149,00' }, { n: 'Brigadeiro de Ninho', p: 'R$134,00' },
-    { n: 'Ninho com Avelã', p: 'R$147,00' }, { n: 'Cajuzinho', p: 'R$139,00' }, { n: 'Casadinho', p: 'R$144,00' },
-    { n: 'Beijinho', p: 'R$139,00' }, { n: 'Mini Trufas', p: 'R$2,25', un: 'un' }
+    { n: 'Brigadeiro', cento: 134 }, { n: 'Ferrero com Avelã', cento: 149 }, { n: 'Brigadeiro de Ninho', cento: 134 },
+    { n: 'Ninho com Avelã', cento: 147 }, { n: 'Cajuzinho', cento: 139 }, { n: 'Casadinho', cento: 144 },
+    { n: 'Beijinho', cento: 139 }, { n: 'Mini Trufas', un: 2.25 }
   ]
 };
+const unitPrice = d => (d.un != null ? d.un : d.cento / 100);
+const STEP = { salg: 5, doces: 1 };   // salgados: de 5 em 5 (sempre arredonda pra cima); docinhos: 1 a 1
+const LOTE_SALG = 5;
+const roundUp5 = v => Math.ceil(v / LOTE_SALG) * LOTE_SALG;
 const MIN_SALG = 50, UNLOCK_AT = 80, MAX_RECHEIOS = 2;
 const maxSabores = total => (total >= UNLOCK_AT ? 4 : 2);
 const PER_PESSOA = { salg: 12, doce: 3, boloKg: 0.1 };
@@ -467,18 +479,18 @@ function save() { try { localStorage.setItem('bdli-pedido', JSON.stringify(state
 const salgWrap = document.getElementById('salg-groups');
 DATA.salgados.forEach(g => {
   const box = document.createElement('div'); box.className = 'group';
-  box.innerHTML = `<div class="group-head"><h3>${g.grupo}</h3><div><span class="price">${g.preco}</span><small>valor da tabela</small></div></div>`;
-  g.itens.forEach(name => box.appendChild(rowEl(name, 'salg', g.grupo)));
+  box.innerHTML = `<div class="group-head"><h3>${g.grupo}</h3><div><span class="price">${brl(g.cento)}</span><small>o cento · ${brl(g.cento / 100)} a unidade</small></div></div>`;
+  g.itens.forEach(name => box.appendChild(rowEl(name, 'salg', g.grupo, null, g.cento / 100)));
   salgWrap.appendChild(box);
 });
 const doceWrap = document.getElementById('doce-rows');
-DATA.doces.forEach(d => doceWrap.appendChild(rowEl(d.n, 'doces', null, d.p + (d.un ? ' a unidade' : ''))));
+DATA.doces.forEach(d => doceWrap.appendChild(rowEl(d.n, 'doces', null, d.un != null ? `${brl(d.un)} a unidade` : `${brl(d.cento)} o cento · ${brl(d.cento / 100)} a unidade`, unitPrice(d))));
 
-function rowEl(name, kind, grupo, priceLabel) {
+function rowEl(name, kind, grupo, priceLabel, unit) {
   const id = slug(name), key = kind + '-' + id, qty = (state[kind][id] || 0);
-  const row = document.createElement('div'); row.className = 'row' + (qty > 0 ? ' on' : ''); row.dataset.kind = kind; row.dataset.id = id; if (grupo) row.dataset.grupo = grupo;
-  row.innerHTML = `<div class="name">${name}${priceLabel ? `<small>${priceLabel}</small>` : ''}</div>
-    <div class="step"><button type="button" data-act="-" aria-label="Menos ${name}">−</button><input id="q-${key}" type="number" inputmode="numeric" min="0" max="9999" step="10" value="${qty}" aria-label="Quantidade de ${name}"><button type="button" data-act="+" aria-label="Mais ${name}">+</button></div>`;
+  const row = document.createElement('div'); row.className = 'row' + (qty > 0 ? ' on' : ''); row.dataset.kind = kind; row.dataset.id = id; row.dataset.unit = unit; if (grupo) row.dataset.grupo = grupo;
+  row.innerHTML = `<div class="name">${name}${priceLabel ? `<small>${priceLabel}</small>` : ''}<span class="sub">${qty > 0 ? brl(qty * unit) : ''}</span></div>
+    <div class="step"><button type="button" data-act="-" aria-label="Menos ${name}">−</button><input id="q-${key}" type="number" inputmode="numeric" min="0" max="9999" step="${STEP[kind] || 1}" value="${qty}" aria-label="Quantidade de ${name}"><button type="button" data-act="+" aria-label="Mais ${name}">+</button></div>`;
   return row;
 }
 
@@ -486,7 +498,7 @@ function rowEl(name, kind, grupo, priceLabel) {
 document.addEventListener('click', e => {
   const btn = e.target.closest('.row .step button'); if (!btn) return;
   const row = btn.closest('.row'), input = row.querySelector('input');
-  const step = 10; let v = parseInt(input.value || '0', 10) || 0;
+  const step = STEP[row.dataset.kind] || 1; let v = parseInt(input.value || '0', 10) || 0;
   v = btn.dataset.act === '+' ? v + step : Math.max(0, v - step);
   input.value = v; setQty(row, v);
 });
@@ -494,6 +506,17 @@ document.addEventListener('input', e => {
   const input = e.target.closest('.row input'); if (!input) return;
   const v = Math.max(0, parseInt(input.value || '0', 10) || 0); setQty(input.closest('.row'), v);
 });
+// ao sair do campo, salgados arredondam sempre pra cima no múltiplo de 5 (63 → 65)
+document.addEventListener('change', e => {
+  const input = e.target.closest('.row[data-kind="salg"] input'); if (!input) return;
+  const v = Math.max(0, parseInt(input.value || '0', 10) || 0), r = roundUp5(v);
+  if (r !== v) { input.value = r; setQty(input.closest('.row'), r); toast(`Salgados vão de 5 em 5 — arredondamos ${v} para ${r}.`); }
+});
+function normalizeSalg() {
+  let changed = false;
+  Object.keys(state.salg).forEach(id => { const v = state.salg[id], r = roundUp5(v); if (r !== v) { const inp = document.getElementById(`q-salg-${id}`); const row = inp && inp.closest('.row'); if (row) { inp.value = r; setQty(row, r); changed = true; } } });
+  return changed;
+}
 function setQty(row, v) {
   const kind = row.dataset.kind, id = row.dataset.id, prev = state[kind][id] || 0;
   if (kind === 'salg' && v > 0 && prev === 0) {
@@ -508,7 +531,9 @@ function setQty(row, v) {
     }
   }
   state[kind][id] = v; if (!v) delete state[kind][id];
-  row.classList.toggle('on', v > 0); save(); renderBar();
+  row.classList.toggle('on', v > 0);
+  row.querySelector('.sub').textContent = v > 0 ? brl(v * parseFloat(row.dataset.unit)) : '';
+  save(); renderBar();
   if (kind === 'salg') renderSalgStatus();
   return true;
 }
@@ -516,6 +541,7 @@ function salgStats() { const lines = salgLines(), total = sum(lines); return { t
 function salgProblems() {
   const s = salgStats(), p = [];
   if (s.total > 0 && s.total < MIN_SALG) p.push(`Salgados têm encomenda mínima de ${MIN_SALG} unidades. Faltam <b>${MIN_SALG - s.total}</b> — pode completar com qualquer sabor.`);
+  else if (s.total % LOTE_SALG !== 0) p.push(`Salgados são vendidos de ${LOTE_SALG} em ${LOTE_SALG}. Arredondamos para <b>${roundUp5(s.total)}</b> ao abrir o pedido.`);
   if (s.flavors > s.max) p.push(`Com ${s.total} salgados o limite é <b>${s.max} sabores</b> (você marcou ${s.flavors}). Suba para ${UNLOCK_AT} unidades ou tire um sabor.`);
   return p;
 }
@@ -524,8 +550,9 @@ function renderSalgStatus() {
   let cls = '', html = '';
   if (s.total === 0) html = `<span>🧺</span><div>Monte seu mix: mínimo de ${MIN_SALG} unidades.</div>`;
   else if (s.total < MIN_SALG) { cls = 'warn'; html = `<span>⚠️</span><div><b>${s.total}</b> de ${MIN_SALG} un mínimas · ${s.flavors} ${s.flavors === 1 ? 'sabor' : 'sabores'}. Faltam <b>${MIN_SALG - s.total}</b>.</div>`; }
+  else if (s.total % LOTE_SALG !== 0) { cls = 'warn'; html = `<span>⚠️</span><div><b>${s.total}</b> un — salgados vão de ${LOTE_SALG} em ${LOTE_SALG}; vai arredondar para <b>${roundUp5(s.total)}</b>.</div>`; }
   else if (s.flavors > s.max) { cls = 'warn'; html = `<span>⚠️</span><div><b>${s.total}</b> un com ${s.flavors} sabores — até 79 un são 2 sabores. Suba para ${UNLOCK_AT} un ou tire um sabor.</div>`; }
-  else { cls = 'ok'; html = `<span>✓</span><div><b>${s.total}</b> un · ${s.flavors} de ${s.max} ${s.max === 2 ? 'sabores (a partir de 80 un, até 4)' : 'sabores'}.</div>`; }
+  else { cls = 'ok'; html = `<span>✓</span><div><b>${s.total}</b> un · ${s.flavors} de ${s.max} ${s.max === 2 ? 'sabores (a partir de 80 un, até 4)' : 'sabores'} · <b>${brl(sumPrice(salgLines()))}</b></div>`; }
   el.className = 'status ' + cls; el.innerHTML = html;
   const locked = s.flavors >= s.max;
   document.querySelectorAll('.row[data-kind="salg"]').forEach(r => {
@@ -542,14 +569,14 @@ const pessoasInput = document.getElementById('pessoas');
 pessoasInput.value = state.pessoas || 30;
 function renderPlanner() {
   const p = Math.max(1, parseInt(pessoasInput.value || '1', 10) || 1); state.pessoas = p;
-  document.getElementById('sg-salg').textContent = (p * PER_PESSOA.salg).toLocaleString('pt-BR');
+  document.getElementById('sg-salg').textContent = roundUp5(p * PER_PESSOA.salg).toLocaleString('pt-BR');
   document.getElementById('sg-doce').textContent = (p * PER_PESSOA.doce).toLocaleString('pt-BR');
   document.getElementById('sg-bolo').textContent = kgFmt(Math.max(0.5, Math.ceil(p * PER_PESSOA.boloKg * 2) / 2)) + ' kg';
   save();
 }
 pessoasInput.addEventListener('input', renderPlanner);
 document.querySelectorAll('[data-for="pessoas"]').forEach(b => b.addEventListener('click', () => {
-  let v = parseInt(pessoasInput.value || '0', 10) || 0; v = b.dataset.act === '+' ? v + 5 : Math.max(1, v - 5); pessoasInput.value = v; renderPlanner();
+  let v = parseInt(pessoasInput.value || '0', 10) || 0; v = b.dataset.act === '+' ? v + 1 : Math.max(1, v - 1); pessoasInput.value = v; renderPlanner();
 }));
 renderPlanner();
 
@@ -593,7 +620,7 @@ function renderCake() {
   document.getElementById('rech-hint').textContent = full ? `2 de ${MAX_RECHEIOS} recheios escolhidos — desmarque um para trocar.` : `Escolha até ${MAX_RECHEIOS} recheios (${state.bolo.recheios.length} de ${MAX_RECHEIOS}).`;
   document.getElementById('kg').value = kgFmt(state.bolo.kg);
   topperBtn.setAttribute('aria-checked', String(state.bolo.topper));
-  document.getElementById('est').textContent = brl(m.p * state.bolo.kg);
+  document.getElementById('est').textContent = brl(boloPrice());
   document.getElementById('est-detail').textContent = `${m.n} · ${kgFmt(state.bolo.kg)} kg × ${brl(m.p)}`;
   document.getElementById('est-topper').hidden = !state.bolo.topper;
   const add = document.getElementById('add-bolo');
@@ -605,18 +632,21 @@ function renderCake() {
 // ---------- order summary ----------
 function salgLines() {
   const out = [];
-  DATA.salgados.forEach(g => g.itens.forEach(n => { const q = state.salg[slug(n)]; if (q) out.push({ name: n, grupo: g.grupo, preco: g.preco, qty: q }); }));
+  DATA.salgados.forEach(g => g.itens.forEach(n => { const q = state.salg[slug(n)]; if (q) out.push({ name: n, grupo: g.grupo, unit: g.cento / 100, preco: `${brl(g.cento)} o cento`, qty: q, total: q * g.cento / 100 }); }));
   return out;
 }
 function doceLines() {
   const out = [];
-  DATA.doces.forEach(d => { const q = state.doces[slug(d.n)]; if (q) out.push({ name: d.n, preco: d.p + (d.un ? ' a unidade' : ''), qty: q }); });
+  DATA.doces.forEach(d => { const q = state.doces[slug(d.n)]; if (q) out.push({ name: d.n, unit: unitPrice(d), preco: d.un != null ? `${brl(d.un)} a unidade` : `${brl(d.cento)} o cento`, qty: q, total: q * unitPrice(d) }); });
   return out;
 }
 const sum = a => a.reduce((t, l) => t + l.qty, 0);
+const sumPrice = a => a.reduce((t, l) => t + l.total, 0);
+function boloPrice() { return DATA.massas[state.bolo.massa].p * state.bolo.kg + (state.bolo.topper ? DATA.topper : 0); }
 function counts() {
-  const s = salgLines(), d = doceLines();
-  return { s, d, ns: sum(s), nd: sum(d), bolo: state.bolo.incluido, items: s.length + d.length + (state.bolo.incluido ? 1 : 0) };
+  const s = salgLines(), d = doceLines(), bolo = state.bolo.incluido;
+  const ps = sumPrice(s), pd = sumPrice(d), pb = bolo ? boloPrice() : 0;
+  return { s, d, ns: sum(s), nd: sum(d), bolo, items: s.length + d.length + (bolo ? 1 : 0), ps, pd, pb, total: ps + pd + pb };
 }
 function renderBar() {
   const c = counts(), btn = document.getElementById('open-sheet'), badge = document.getElementById('bar-count');
@@ -625,7 +655,7 @@ function renderBar() {
   if (c.ns) parts.push(`${c.ns} salgados`);
   if (c.bolo) parts.push(`bolo ${kgFmt(state.bolo.kg)} kg`);
   if (c.nd) parts.push(`${c.nd} docinhos`);
-  document.getElementById('bar-title').textContent = c.items ? 'Seu pedido' : 'Monte seu pedido';
+  document.getElementById('bar-title').textContent = c.items ? `Total ${brl(c.total)}` : 'Monte seu pedido';
   document.getElementById('bar-sub').textContent = c.items ? parts.join(' · ') : 'Escolha os sabores acima';
   if (!document.getElementById('overlay').hidden) renderSheet();
 }
@@ -635,24 +665,25 @@ function renderSheet() {
   if (!c.items) { body.innerHTML = '<div class="empty"><b>Ainda está vazio</b>Escolha salgados, monte o bolo ou marque docinhos.</div>'; document.getElementById('send').setAttribute('aria-disabled', 'true'); return; }
   const problems = salgProblems();
   problems.forEach(p => body.insertAdjacentHTML('beforeend', `<div class="alert"><span>⚠️</span><div>${p}</div></div>`));
-  if (c.s.length) body.appendChild(box('Salgados', `${c.ns} un`, c.s.map(l => line(`${l.name}<small>${l.grupo} · ${l.preco}</small>`, `${l.qty} un`, 'salg', slug(l.name)))));
+  if (c.s.length) body.appendChild(box('Salgados', `${c.ns} un · ${brl(c.ps)}`, c.s.map(l => line(`${l.name}<small>${l.grupo} · ${l.qty} × ${brl(l.unit)}</small>`, brl(l.total), 'salg', slug(l.name)))));
   if (c.bolo) {
     const m = DATA.massas[state.bolo.massa], b = state.bolo;
-    body.appendChild(box('Bolo decorado', brl(m.p * b.kg), [
-      line(`Massa ${m.n}<small>${kgFmt(b.kg)} kg × ${brl(m.p)}/kg</small>`, `${kgFmt(b.kg)} kg`, 'bolo'),
+    body.appendChild(box('Bolo decorado', brl(c.pb), [
+      line(`Massa ${m.n}<small>${kgFmt(b.kg)} kg × ${brl(m.p)}/kg</small>`, brl(m.p * b.kg), 'bolo'),
       line(`Recheio<small>${b.recheios.length ? b.recheios.join(' + ') : 'a combinar com a Li'}</small>`, ''),
-      line(`Topper<small>${b.topper ? 'sim, a partir de R$25,00' : 'não'}</small>`, ''),
+      line(`Topper<small>${b.topper ? 'sim · a partir de' : 'não'}</small>`, b.topper ? brl(DATA.topper) : ''),
       ...(b.tema ? [line(`Tema / texto<small>${esc(b.tema)}</small>`, '')] : [])
     ]));
   }
-  if (c.d.length) body.appendChild(box('Docinhos', `${c.nd} un`, c.d.map(l => line(`${l.name}<small>${l.preco}</small>`, `${l.qty} un`, 'doces', slug(l.name)))));
+  if (c.d.length) body.appendChild(box('Docinhos', `${c.nd} un · ${brl(c.pd)}`, c.d.map(l => line(`${l.name}<small>${l.qty} × ${brl(l.unit)}</small>`, brl(l.total), 'doces', slug(l.name)))));
+  body.insertAdjacentHTML('beforeend', `<div class="total"><div class="lbl2">Total do pedido<small>Calculado pela tabela${c.bolo && state.bolo.topper ? ' · topper a partir de R$25,00' : ''}</small></div><span class="price">${brl(c.total)}</span></div>`);
   body.insertAdjacentHTML('beforeend', `
     <div class="form2">
       <div class="field"><label for="nome">Seu nome</label><input class="txt" id="nome" type="text" placeholder="Como a Li te chama?" maxlength="60" value="${esc(state.nome)}"></div>
       <div class="field"><label for="data">Data da festa</label><input class="txt" id="data" type="date" value="${esc(state.data)}"></div>
       <div class="field full"><label for="obs">Observações</label><textarea class="txt" id="obs" placeholder="Entrega ou retirada, horário, alergias, cores da decoração…" maxlength="400">${esc(state.obs)}</textarea></div>
     </div>
-    <p class="fine">A Li confirma os valores, a disponibilidade da data e combina o pagamento (dinheiro, cartão ou Pix) pelo WhatsApp.</p>`);
+    <p class="fine">A Li confirma o pedido, a disponibilidade da data e combina o pagamento (dinheiro, cartão ou Pix) pelo WhatsApp.</p>`);
   ['nome', 'data', 'obs'].forEach(k => { const el = document.getElementById(k); el.addEventListener('input', () => { state[k] = el.value; save(); updateLink(); }); });
   document.getElementById('send').setAttribute('aria-disabled', String(problems.length > 0));
   updateLink();
@@ -678,34 +709,32 @@ function buildMessage() {
   const c = counts(), L = [];
   L.push('Olá, Li! 🎂 Quero fazer um pedido pelo cardápio digital:');
   if (c.s.length) {
-    L.push('', `🥟 *SALGADOS* — ${c.ns} un`);
-    c.s.forEach(l => L.push(`• ${l.name} — ${l.qty} un (${l.grupo})`));
-    const grupos = [...new Set(c.s.map(l => `${l.grupo} ${l.preco}`))];
-    L.push(`_Tabela: ${grupos.join(' · ')}_`);
+    L.push('', `🥟 *SALGADOS* — ${c.ns} un · ${brl(c.ps)}`);
+    c.s.forEach(l => L.push(`• ${l.name} (${l.grupo}) — ${l.qty} un = ${brl(l.total)}`));
   }
   if (c.bolo) {
     const m = DATA.massas[state.bolo.massa], b = state.bolo;
-    L.push('', '🎂 *BOLO DECORADO*', `• Massa: ${m.n} — ${kgFmt(b.kg)} kg (${brl(m.p)}/kg)`, `• Recheio: ${b.recheios.length ? b.recheios.join(' + ') : 'a combinar'}`, `• Topper: ${b.topper ? 'sim (a partir de R$25,00)' : 'não'}`);
+    L.push('', `🎂 *BOLO DECORADO* — ${brl(c.pb)}`, `• Massa: ${m.n} — ${kgFmt(b.kg)} kg × ${brl(m.p)} = ${brl(m.p * b.kg)}`, `• Recheio: ${b.recheios.length ? b.recheios.join(' + ') : 'a combinar'}`, `• Topper: ${b.topper ? `sim — ${brl(DATA.topper)} (a partir de)` : 'não'}`);
     if (b.tema) L.push(`• Tema/texto: ${b.tema}`);
-    L.push(`_Estimativa da massa: ${brl(m.p * b.kg)}_`);
   }
   if (c.d.length) {
-    L.push('', `🍬 *DOCINHOS* — ${c.nd} un`);
-    c.d.forEach(l => L.push(`• ${l.name} — ${l.qty} un (${l.preco})`));
+    L.push('', `🍬 *DOCINHOS* — ${c.nd} un · ${brl(c.pd)}`);
+    c.d.forEach(l => L.push(`• ${l.name} — ${l.qty} un = ${brl(l.total)}`));
   }
+  L.push('', `💰 *TOTAL: ${brl(c.total)}*`);
   const extra = [];
   if (state.nome) extra.push(`👤 Nome: ${state.nome}`);
   if (state.data) { const [y, mo, d] = state.data.split('-'); if (d) extra.push(`📅 Data da festa: ${d}/${mo}/${y}`); }
   if (state.obs) extra.push(`📝 Obs: ${state.obs}`);
   if (extra.length) L.push('', ...extra);
-  L.push('', 'Pode confirmar os valores e a disponibilidade? Obrigado(a)! 💕');
+  L.push('', 'Pode confirmar o pedido e a disponibilidade da data? Obrigado(a)! 💕');
   return L.join('\n');
 }
 function updateLink() { document.getElementById('send').href = `https://wa.me/${PHONE}?text=${encodeURIComponent(buildMessage())}`; }
 
 // ---------- sheet open/close ----------
 const overlay = document.getElementById('overlay');
-function openSheet() { renderSheet(); overlay.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('close-sheet').focus(); }
+function openSheet() { normalizeSalg(); renderSheet(); overlay.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('close-sheet').focus(); }
 function closeSheet() { overlay.hidden = true; document.body.style.overflow = ''; }
 document.getElementById('open-sheet').addEventListener('click', openSheet);
 document.getElementById('close-sheet').addEventListener('click', closeSheet);
